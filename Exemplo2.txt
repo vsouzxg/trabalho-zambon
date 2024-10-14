@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Main {     
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Entrada de dados 
+        System.out.print("Informe o sexo do cliente (M para masculino, F para feminino): ");
+        char sexo = sc.next().charAt(0);
+
+        System.out.print("Quantas cervejas o cliente consumiu? ");
+        int qtdCervejas = sc.nextInt();
+
+        System.out.print("Quantos refrigerantes o cliente consumiu? ");
+        int qtdRefrigerantes = sc.nextInt();
+
+        System.out.print("Quantos espetinhos o cliente consumiu? ");
+        int qtdEspetinhos = sc.nextInt();
+
+        // Preços fixos
+        double precoIngresso = (sexo == 'M' || sexo == 'm') ? 10 : 8;
+        double precoCerveja = 5.0;
+        double precoRefrigerante = 3.0;
+        double precoEspetinho = 7.0;
+        double couvertArtistico = 4.0;
+
+        // Cálculo do consumo
+        double valorCervejas = qtdCervejas * precoCerveja;
+        double valorRefrigerantes = qtdRefrigerantes * precoRefrigerante;
+        double valorEspetinhos = qtdEspetinhos * precoEspetinho;
+        double valorConsumo = valorCervejas + valorRefrigerantes + valorEspetinhos;
+
+        // Verificar se o cliente está isento do couvert artístico
+        boolean isentoCouvert = valorConsumo > 30;
+        if (isentoCouvert) {
+            couvertArtistico = 0;
+        }
+
+        // Total a pagar
+        double valorTotal = precoIngresso + valorConsumo + couvertArtistico;
+
+        // Exibir relatório conforme o modelo solicitado
+        System.out.println("\n### RELATÓRIO ###");
+        System.out.printf("Sexo: %s%n", (sexo == 'M' || sexo == 'm') ? "Masculino" : "Feminino");
+        System.out.printf("Quantidade de cervejas: %d%n", qtdCervejas);
+        System.out.printf("Quantidade de refrigerantes: %d%n", qtdRefrigerantes);
+        System.out.printf("Quantidade de espetinhos: %d%n", qtdEspetinhos);
+        System.out.printf("Consumo = R$ %.2f%n", valorConsumo);
+
+        if (isentoCouvert) {
+            System.out.println("Isento de Couvert");
+        } else {
+            System.out.printf("Couvert artístico = R$ %.2f%n", couvertArtistico);
+        }
+
+        System.out.printf("Ingresso = R$ %.2f%n", precoIngresso);
+        System.out.printf("Valor a pagar = R$ %.2f%n", valorTotal);
+
+        sc.close();
+    }
+}
