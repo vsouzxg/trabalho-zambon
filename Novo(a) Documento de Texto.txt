@@ -1,1 +1,70 @@
-sou uma alteração
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Entrada de dados
+        System.out.print("Digite a renda anual com salário: ");
+        double rendaAnualSalario = sc.nextDouble();
+
+        System.out.print("Digite a renda anual com prestação de serviços: ");
+        double rendaPrestacaoServicos = sc.nextDouble();
+
+        System.out.print("Digite a renda anual com ganho de capital: ");
+        double ganhoCapital = sc.nextDouble();
+
+        System.out.print("Digite os gastos médicos no ano: ");
+        double gastosMedicos = sc.nextDouble();
+
+        System.out.print("Digite os gastos educacionais no ano: ");
+        double gastosEducacionais = sc.nextDouble();
+
+        // Cálculo do imposto sobre o salário
+        double salarioMensal = rendaAnualSalario / 12;
+        double impostoSalario = 0;
+
+        if (salarioMensal >= 5000) {
+            impostoSalario = rendaAnualSalario * 0.20;
+        } else if (salarioMensal >= 3000) {
+            impostoSalario = rendaAnualSalario * 0.10;
+        }
+
+        // Cálculo do imposto sobre prestação de serviços
+        double impostoServicos = rendaPrestacaoServicos * 0.15;
+
+        // Cálculo do imposto sobre ganho de capital
+        double impostoGanhoCapital = ganhoCapital * 0.20;
+
+        // Cálculo do imposto bruto
+        double impostoBruto = impostoSalario + impostoServicos + impostoGanhoCapital;
+
+        // Cálculo do abatimento
+        double limiteAbatimento = impostoBruto * 0.30;
+        double gastosDedutiveis = gastosMedicos + gastosEducacionais;
+        double abatimento = Math.min(limiteAbatimento, gastosDedutiveis);
+
+        // Cálculo do imposto líquido
+        double impostoLiquido = impostoBruto - abatimento;
+
+        // Exibição do relatório
+        System.out.println("\n### RELATÓRIO DE IMPOSTO DE RENDA ###");
+        System.out.println("* CONSOLIDADO DE RENDA:");
+        System.out.printf("Imposto sobre salário: R$ %.2f%n", impostoSalario);
+        System.out.printf("Imposto sobre serviços: R$ %.2f%n", impostoServicos);
+        System.out.printf("Imposto sobre ganho de capital: R$ %.2f%n", impostoGanhoCapital);
+        System.out.println("* DEDUÇÕES:");
+        System.out.printf("Máximo dedutível: R$ %.2f%n", limiteAbatimento);
+        System.out.printf("Gastos médicos: R$ %.2f%n", gastosMedicos);
+        System.out.printf("Gastos educacionais: R$ %.2f%n", gastosEducacionais);
+        System.out.printf("Gastos dedutíveis totais: R$ %.2f%n", gastosDedutiveis);
+        System.out.println("* RESUMO:");
+        System.out.printf("Imposto bruto total: R$ %.2f%n", impostoBruto);
+        System.out.printf("Abatimento: R$ %.2f%n", abatimento);
+        System.out.printf("Imposto devido: R$ %.2f%n", impostoLiquido);
+
+        sc.close();
+    }
+}
+
+
